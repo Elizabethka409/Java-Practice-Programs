@@ -74,7 +74,7 @@ public class PaintCost
          
          // calcualtes perimeter and wallspace
          double perimeter = calcPerimeter(length, width);
-         double wallSpace = calcWallSpace(length, width, height);
+         double sqFtWallSpace = calcWallSpace(length, width, height);
          
          // calculating costs
          double paintCost = calcPaintCost(wallSpace);
@@ -119,27 +119,27 @@ public class PaintCost
    
    /*
       method calculates and returns the cost of paint for painting a room
-         @param wallSpace The square feet of wall space in the room
+         @param sqFtWallSpace The square feet of wall space in the room
          @return The cost of paint for painting the room
    */
-   public static double calcPaintCost(double wallSpace)
+   public static double calcPaintCost(double sqFtWallSpace)
    {
       // Each gallon costs $60, aka flat fee
       final double PAINT_COST_PER_GALLON = 60;
       // one gallon of paint takes up 250 square feet
       final double SQ_FT_PER_GALLON = 250;
       // for every 250 sq ft of wallspace, a gallon of paint is required. Rounds up gallons if needed.
-      double gallonsNeeded = Math.ceil(wallSpace / SQ_FT_PER_GALLON);
+      double gallonsNeeded = Math.ceil(sqFtWallSpace / SQ_FT_PER_GALLON);
       
       return gallonsNeeded * PAINT_COST_PER_GALLON; 
    }
    
    /*
       method calculates and returns the cost of labor to work on one room
-         @param wallSpace The square feet of wall space in the room
+         @param sqFtWallSpace The square feet of wall space in the room
          @return The cost of labor for painting the room
    */
-   public static double calcLaborCost(double wallSpace)
+   public static double calcLaborCost(double sqFtWallSpace)
    {
       // for every 250 sq ft of wallspace, 4 hours of labor is required
       // $35 per hour of labor
@@ -147,7 +147,7 @@ public class PaintCost
       // 250 sq ft takes 4 hours to paint + 1 gallon of paint
       final double SQ_FT_PER_GALLON = 250;
       final double HOURS_OF_LABOR_REQUIRED_PER_GALLON = 4;
-      double hoursNeeded = (wallSpace / SQ_FT_PER_GALLON) * HOURS_OF_LABOR_REQUIRED_PER_GALLON;
+      double hoursNeeded = (sqFtWallSpace / SQ_FT_PER_GALLON) * HOURS_OF_LABOR_REQUIRED_PER_GALLON;
       
       return hoursNeeded * LABOR_COST_PER_HOUR; 
    }
